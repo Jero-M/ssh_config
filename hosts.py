@@ -18,6 +18,7 @@ class StartUI(QtGui.QMainWindow):
         self.ui.setupUi(self)
 
         self.hostnames = self.load_default_hostnames()
+        self.add_all_hostnames_to_list()
 
     def load_default_hostnames(self):
         '''Load the default hostnames file'''
@@ -31,6 +32,11 @@ class StartUI(QtGui.QMainWindow):
                     hostname_column = i
                     break
             return [hostname[hostname_column] for hostname in reader]
+
+    def add_all_hostnames_to_list(self):
+        '''Load all the hostnames into the list'''
+        for hostname in self.hostnames:
+            self.ui.list_hosts.addItem(hostname)
 
 
 if __name__ == "__main__":
