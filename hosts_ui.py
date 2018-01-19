@@ -16,13 +16,11 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
-
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
 
 class Ui_HostsWindow(object):
     def setupUi(self, HostsWindow):
@@ -35,7 +33,11 @@ class Ui_HostsWindow(object):
         self.gridLayout.setHorizontalSpacing(6)
         self.gridLayout.setVerticalSpacing(10)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.text_host = QtGui.QLineEdit(self.centralwidget)
+        self.text_host.setObjectName(_fromUtf8("text_host"))
+        self.gridLayout.addWidget(self.text_host, 2, 1, 1, 1)
         self.list_hosts = QtGui.QListWidget(self.centralwidget)
+        self.list_hosts.setAlternatingRowColors(True)
         self.list_hosts.setObjectName(_fromUtf8("list_hosts"))
         self.gridLayout.addWidget(self.list_hosts, 0, 0, 6, 1)
         self.button_remove = QtGui.QPushButton(self.centralwidget)
@@ -44,9 +46,6 @@ class Ui_HostsWindow(object):
         self.button_load = QtGui.QPushButton(self.centralwidget)
         self.button_load.setObjectName(_fromUtf8("button_load"))
         self.gridLayout.addWidget(self.button_load, 0, 1, 1, 1)
-        self.text_host = QtGui.QLineEdit(self.centralwidget)
-        self.text_host.setObjectName(_fromUtf8("text_host"))
-        self.gridLayout.addWidget(self.text_host, 2, 1, 1, 1)
         self.button_add = QtGui.QPushButton(self.centralwidget)
         self.button_add.setObjectName(_fromUtf8("button_add"))
         self.gridLayout.addWidget(self.button_add, 2, 2, 1, 1)
@@ -61,3 +60,4 @@ class Ui_HostsWindow(object):
         self.button_remove.setText(_translate("HostsWindow", "Remove Selected", None))
         self.button_load.setText(_translate("HostsWindow", "Load Hosts List", None))
         self.button_add.setText(_translate("HostsWindow", "Add Host", None))
+
