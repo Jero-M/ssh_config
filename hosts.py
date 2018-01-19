@@ -33,6 +33,9 @@ class StartUI(QtGui.QMainWindow):
                     break
             return [hostname[hostname_column] for hostname in reader]
 
+    def save_hostnames_to_file(self):
+        '''Save the hostames to the default hostnames file'''
+
     def add_all_hostnames_to_list(self):
         '''Load all the hostnames into the list'''
         for hostname in self.hostnames:

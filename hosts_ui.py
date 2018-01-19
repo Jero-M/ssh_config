@@ -38,6 +38,7 @@ class Ui_HostsWindow(object):
         self.gridLayout.addWidget(self.text_host, 2, 1, 1, 1)
         self.list_hosts = QtGui.QListWidget(self.centralwidget)
         self.list_hosts.setAlternatingRowColors(True)
+        self.list_hosts.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.list_hosts.setObjectName(_fromUtf8("list_hosts"))
         self.gridLayout.addWidget(self.list_hosts, 0, 0, 6, 1)
         self.button_remove = QtGui.QPushButton(self.centralwidget)
