@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'hosts.ui'
+# Form implementation generated from reading ui file 'hosts_ui.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -24,11 +24,11 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(517, 346)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+class Ui_HostsWindow(object):
+    def setupUi(self, HostsWindow):
+        HostsWindow.setObjectName(_fromUtf8("HostsWindow"))
+        HostsWindow.resize(517, 346)
+        self.centralwidget = QtGui.QWidget(HostsWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(12)
@@ -50,14 +50,14 @@ class Ui_MainWindow(object):
         self.button_add = QtGui.QPushButton(self.centralwidget)
         self.button_add.setObjectName(_fromUtf8("button_add"))
         self.gridLayout.addWidget(self.button_add, 2, 2, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
+        HostsWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(HostsWindow)
+        QtCore.QMetaObject.connectSlotsByName(HostsWindow)
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
+    def retranslateUi(self, HostsWindow):
+        HostsWindow.setWindowTitle(_translate("HostsWindow", "MainWindow", None))
         self.list_hosts.setSortingEnabled(False)
-        self.button_remove.setText(_translate("MainWindow", "Remove Selected", None))
-        self.button_load.setText(_translate("MainWindow", "Load Hosts List", None))
-        self.button_add.setText(_translate("MainWindow", "Add Host", None))
+        self.button_remove.setText(_translate("HostsWindow", "Remove Selected", None))
+        self.button_load.setText(_translate("HostsWindow", "Load Hosts List", None))
+        self.button_add.setText(_translate("HostsWindow", "Add Host", None))
