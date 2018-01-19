@@ -16,11 +16,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_HostsWindow(object):
     def setupUi(self, HostsWindow):
@@ -59,4 +61,3 @@ class Ui_HostsWindow(object):
         self.button_remove.setText(_translate("HostsWindow", "Remove Selected", None))
         self.button_load.setText(_translate("HostsWindow", "Load Hosts List", None))
         self.button_add.setText(_translate("HostsWindow", "Add Host", None))
-
