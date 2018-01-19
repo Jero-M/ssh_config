@@ -25,6 +25,11 @@ class StartUI(QtGui.QMainWindow):
         self.hostnames_file = self.load_default_hostnames_file()
         self.add_all_hostnames_to_list()
 
+        # Signal Handling
+        QtCore.QObject.connect(self.ui.button_add,
+                               QtCore.SIGNAL("clicked()"),
+                               self.add_selected)
+
     def load_default_hostnames_file(self):
         '''Load the default hostnames file'''
         data = []
@@ -55,6 +60,8 @@ class StartUI(QtGui.QMainWindow):
 
     def add_selected(self):
         '''Add the selected hostname to the list'''
+        host_to_add = str(self.ui.text_host.text())
+        print host_to_add
 
 
 if __name__ == "__main__":
