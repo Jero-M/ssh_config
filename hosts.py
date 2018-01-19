@@ -8,6 +8,10 @@ from PyQt4 import QtCore, QtGui
 from hosts_ui import Ui_HostsWindow
 
 
+local_path = os.path.dirname(os.path.realpath(__file__))
+default_hostnames = local_path + "/hostnames.csv"
+
+
 class StartUI(QtGui.QMainWindow):
     '''Build an instance of the GUI'''
 
@@ -17,29 +21,40 @@ class StartUI(QtGui.QMainWindow):
         self.ui = Ui_HostsWindow()
         self.ui.setupUi(self)
 
-        self.hostnames = self.load_default_hostnames()
+        self.hostname_csv_column = -1
+        self.hostnames_file = self.load_default_hostnames_file()
         self.add_all_hostnames_to_list()
 
-    def load_default_hostnames(self):
+    def load_default_hostnames_file(self):
         '''Load the default hostnames file'''
-        local_path = os.path.dirname(os.path.realpath(__file__))
-        default_hostnames = local_path + "/hostnames.csv"
-        hostname_column = -1
+        data = []
         with open(default_hostnames, "rb") as csv_file:
             reader = csv.reader(csv_file)
             for i, column_name in enumerate(reader.next()):
                 if column_name == "Hostname":
-                    hostname_column = i
+                    self.hostname_csv_column = i
                     break
-            return [hostname[hostname_column] for hostname in reader]
+            for row in reader:
+                data.append(row)
+            return data
 
     def save_hostnames_to_file(self):
         '''Save the hostames to the default hostnames file'''
+        with open(default_hostnames, "wb") as csv_file:
+            writer = csv.writer(csv_file)
+            for row in self.hostnames_file:
+                writer.writerow(row)
 
     def add_all_hostnames_to_list(self):
         '''Load all the hostnames into the list'''
-        for hostname in self.hostnames:
-            self.ui.list_hosts.addItem(hostname)
+        for row in self.hostnames_file:
+            self.ui.list_hosts.addItem(row[self.hostname_csv_column])
+
+    def remove_selected(self):
+        '''Remove the selected hostname/s from the list'''
+
+    def add_selected(self):
+        '''Add the selected hostname to the list'''
 
 
 if __name__ == "__main__":
