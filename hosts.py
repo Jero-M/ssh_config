@@ -77,12 +77,16 @@ class StartUI(QtGui.QMainWindow):
     def add_selected(self):
         '''Add the selected hostname to the list'''
         host_to_add = str(self.ui.text_host.text())
+        if not host_to_add.strip():
+            return
         # Append to file
         self.hostnames_file.append(['0.0.0.0', '0 ms', host_to_add, '[n/s]'])
         # Add to UI
         self.ui.list_hosts.addItem(host_to_add)
         # Save file
         self.save_hostnames_to_file()
+        # Clear text field
+        self.ui.text_host.clear()
 
 
 if __name__ == "__main__":
