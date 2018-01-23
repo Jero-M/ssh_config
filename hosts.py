@@ -29,10 +29,12 @@ class StartUI(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.button_add,
                                QtCore.SIGNAL("clicked()"),
                                self.add_selected)
-
         QtCore.QObject.connect(self.ui.button_remove,
                                QtCore.SIGNAL("clicked()"),
                                self.remove_selected)
+        QtCore.QObject.connect(self.ui.button_load,
+                               QtCore.SIGNAL("clicked()"),
+                               self.load_from_file)
 
     def load_default_hostnames_file(self):
         '''Load the default hostnames file'''
@@ -62,6 +64,15 @@ class StartUI(QtGui.QMainWindow):
         for row in self.hostnames_file[1:]:  # [1:] skips the header row
             self.ui.list_hosts.addItem(row[self.hostname_csv_column])
 
+    def load_from_file(self):
+        '''Load the hostnames from another file'''
+        # filename = QtGui.QFileDialog.getOpenFileName(
+        #                                              self, "Open CSV file", "",
+        #                                              "CSV files (*.csv)")
+        # if os.path.isfile(filename):
+        #     print filename
+        self.replace_or_merge_dialog()
+
     def remove_selected(self):
         '''Remove the selected hostname/s from the list'''
         selected_hosts_items = self.ui.list_hosts.selectedItems()
@@ -87,6 +98,30 @@ class StartUI(QtGui.QMainWindow):
         self.save_hostnames_to_file()
         # Clear text field
         self.ui.text_host.clear()
+
+    def replace_or_merge_dialog(self):
+        '''Creates the Dialog window to replace or merge new hostnames'''
+        dialog = QtGui.QDialog()
+        dialog.resize(646, 140)
+        dialog.setMinimumSize(QtCore.QSize(646, 140))
+        dialog.setMaximumSize(QtCore.QSize(646, 140))
+        dialog.setWindowTitle("Replace or Merge Contents")
+        self.dialog_label = QtGui.QLabel(dialog)
+        self.dialog_label.setGeometry(QtCore.QRect(31, 12, 581, 56))
+        self.dialog_label.setAlignment(QtCore.Qt.AlignLeading |
+                                       QtCore.Qt.AlignLeft |
+                                       QtCore.Qt.AlignTop)
+        self.dialog_label.setWordWrap(True)
+        self.dialog_label.setText("Would you like to replace all the" +
+                                  "previous hostnames with the file contents" +
+                                  "(Replace) or merge the existing hostnames" +
+                                  "with the ones from file while also" +
+                                  "avoiding repeated hostnames (Merge)")
+        self.button_replace = QtGui.QPushButton("Relace", dialog)
+        self.button_replace.setGeometry(QtCore.QRect(210, 90, 99, 27))
+        self.button_merge = QtGui.QPushButton("Merge", dialog)
+        self.button_merge.setGeometry(QtCore.QRect(330, 90, 99, 27))
+        dialog.exec_()
 
 
 if __name__ == "__main__":

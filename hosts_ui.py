@@ -25,7 +25,7 @@ except AttributeError:
 class Ui_HostsWindow(object):
     def setupUi(self, HostsWindow):
         HostsWindow.setObjectName(_fromUtf8("HostsWindow"))
-        HostsWindow.resize(517, 346)
+        HostsWindow.resize(517, 320)
         self.centralwidget = QtGui.QWidget(HostsWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -40,7 +40,7 @@ class Ui_HostsWindow(object):
         self.list_hosts.setAlternatingRowColors(True)
         self.list_hosts.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.list_hosts.setObjectName(_fromUtf8("list_hosts"))
-        self.gridLayout.addWidget(self.list_hosts, 0, 0, 6, 1)
+        self.gridLayout.addWidget(self.list_hosts, 0, 0, 5, 1)
         self.button_remove = QtGui.QPushButton(self.centralwidget)
         self.button_remove.setObjectName(_fromUtf8("button_remove"))
         self.gridLayout.addWidget(self.button_remove, 1, 1, 1, 1)
@@ -59,6 +59,6 @@ class Ui_HostsWindow(object):
         HostsWindow.setWindowTitle(_translate("HostsWindow", "Network Hosts Editor", None))
         self.list_hosts.setSortingEnabled(False)
         self.button_remove.setText(_translate("HostsWindow", "Remove Selected", None))
-        self.button_load.setText(_translate("HostsWindow", "Load Hosts List", None))
+        self.button_load.setText(_translate("HostsWindow", "Load From File", None))
         self.button_add.setText(_translate("HostsWindow", "Add Host", None))
 
