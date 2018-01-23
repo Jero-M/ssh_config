@@ -106,7 +106,8 @@ class StartUI(QtGui.QMainWindow):
             # Add the new hostnames to the existing ones
             self.hostnames_file.append(new_host)
             # Add the on the UI
-
+            self.add_hostname(new_host)
+        self.save_hostnames_to_file()
 
     def replace_new_hostnames(self, file):
         '''Replace the existing hostnames with the ones loaded from file'''
@@ -126,9 +127,13 @@ class StartUI(QtGui.QMainWindow):
         # Save file
         self.save_hostnames_to_file()
 
-    def add_hostname(self):
+    def add_hostname(self, hostname=""):
         '''Add a single hostname to the list'''
-        host_to_add = str(self.ui.text_host.text())
+        if not hostname:
+            host_to_add = str(self.ui.text_host.text())
+        else:
+            host_to_add = hostname
+
         if not host_to_add.strip():
             return
         # Append to file
