@@ -106,12 +106,13 @@ class StartUI(QtGui.QMainWindow):
             # Add the new hostnames to the existing ones
             self.hostnames_file.append(new_host)
             # Add the on the UI
-            self.add_hostname(new_host)
+            self.add_hostname(new_host[self.hostname_csv_column])
         self.save_hostnames_to_file()
 
     def replace_new_hostnames(self, file):
         '''Replace the existing hostnames with the ones loaded from file'''
         self.hostnames_file = self.load_hostnames_file(file)
+        self.ui.list_hosts.clear()
         self.add_all_hostnames_to_list()
         self.save_hostnames_to_file()
 
