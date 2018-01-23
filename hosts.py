@@ -66,12 +66,28 @@ class StartUI(QtGui.QMainWindow):
 
     def load_from_file(self):
         '''Load the hostnames from another file'''
-        # filename = QtGui.QFileDialog.getOpenFileName(
-        #                                              self, "Open CSV file", "",
-        #                                              "CSV files (*.csv)")
-        # if os.path.isfile(filename):
-        #     print filename
-        self.replace_or_merge_dialog()
+        filename = QtGui.QFileDialog.getOpenFileName(
+                                                     self, "Open CSV file", "",
+                                                     "CSV files (*.csv)")
+        if os.path.isfile(filename):
+            message = QtGui.QMessageBox(self)
+            message.setText("Would you like to replace all the previous " +
+                            "hostnames with the file contents (Replace) or " +
+                            "merge the existing hostnames with the ones from" +
+                            " file while also avoiding repeated hostnames" +
+                            " (Merge)")
+            message.setIcon(QtGui.QMessageBox.Question)
+            message.setWindowTitle("Replace or Merge File Contents")
+            message.addButton("Replace", QtGui.QMessageBox.AcceptRole)
+            message.addButton("Merge", QtGui.QMessageBox.DestructiveRole)
+            cancel = message.addButton("Cancel", QtGui.QMessageBox.RejectRole)
+            message.setDefaultButton(cancel)
+            message.exec_()
+            response = message.clickedButton().text()
+            if response == "Merge":
+                print "Merge", filename
+            elif response == "Replace":
+                print "Replace", filename
 
     def remove_selected(self):
         '''Remove the selected hostname/s from the list'''
