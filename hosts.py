@@ -99,6 +99,9 @@ class StartUI(QtGui.QMainWindow):
         # Clear text field
         self.ui.text_host.clear()
 
+    def load_replace(self):
+        print "replace"
+
     def replace_or_merge_dialog(self):
         '''Creates the Dialog window to replace or merge new hostnames'''
         dialog = QtGui.QDialog()
@@ -118,11 +121,16 @@ class StartUI(QtGui.QMainWindow):
                                   "with the ones from file while also" +
                                   "avoiding repeated hostnames (Merge)")
         self.button_replace = QtGui.QPushButton("Relace", dialog)
-        self.button_replace.setGeometry(QtCore.QRect(210, 90, 99, 27))
+        self.button_replace.setGeometry(QtCore.QRect(130, 90, 99, 27))
         self.button_merge = QtGui.QPushButton("Merge", dialog)
-        self.button_merge.setGeometry(QtCore.QRect(330, 90, 99, 27))
+        self.button_merge.setGeometry(QtCore.QRect(270, 90, 99, 27))
+        self.button_cancel = QtGui.QPushButton("Cancel", dialog)
+        self.button_cancel.setGeometry(QtCore.QRect(410, 90, 99, 27))
         dialog.exec_()
 
+        QtCore.QObject.connect(self.button_replace,
+                               QtCore.SIGNAL("clicked()"),
+                               self.load_replace)
 
 if __name__ == "__main__":
     # Create the GUI
