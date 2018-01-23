@@ -91,11 +91,28 @@ class StartUI(QtGui.QMainWindow):
 
     def merge_new_hostnames(self, file):
         '''Merge the new hostnames with the existing ones'''
-        new_hosts = self.load_hostnames_file(file)
+        loaded_hosts = self.load_hostnames_file(file)
+        hosts_to_add = []
+        for loaded_host in loaded_hosts:
+            merge = 1
+            for old_host in self.hostnames_file:
+                if loaded_host[self.hostname_csv_column] in old_host:
+                    merge = 0
+                    break
+            if merge == 1:
+                hosts_to_add.append(loaded_host)
+
+        for new_host in hosts_to_add:
+            # Add the new hostnames to the existing ones
+            self.hostnames_file.append(new_host)
+            # Add the on the UI
+
 
     def replace_new_hostnames(self, file):
         '''Replace the existing hostnames with the ones loaded from file'''
-        new_hosts = self.load_hostnames_file(file)
+        self.hostnames_file = self.load_hostnames_file(file)
+        self.add_all_hostnames_to_list()
+        self.save_hostnames_to_file()
 
     def remove_selected(self):
         '''Remove the selected hostname/s from the list'''
